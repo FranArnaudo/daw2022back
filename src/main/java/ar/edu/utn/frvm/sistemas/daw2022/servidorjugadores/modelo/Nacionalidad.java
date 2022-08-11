@@ -14,8 +14,11 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class Nacionalidad {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Integer id;
     @NonNull
     private String nombre;
+    @NonNull
+    private String codigo;
+    private String descripcion;
 }
