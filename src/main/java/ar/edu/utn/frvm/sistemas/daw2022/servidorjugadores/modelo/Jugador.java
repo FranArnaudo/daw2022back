@@ -27,11 +27,11 @@ public class Jugador {
     private Date fechaNacimiento;
 
     @ManyToOne()
-        private Facultad facultad;
+    private Facultad facultad;
     @ManyToOne()
-        private Rol rol;
+    private Rol rol;
     @ManyToOne()
-        private Disciplina disciplina;
+    private Disciplina disciplina;
     @ManyToOne()
-        private Nacionalidad nacionalidad;
+    private Nacionalidad nacionalidad;
 }

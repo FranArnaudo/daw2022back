@@ -52,8 +52,8 @@ public class ControladorRol {
     }
 
     // DELETE
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void eliminar(@RequestBody Integer id){
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public void eliminar(@PathVariable("id") Integer id){
         this.servicio.eliminar(id);
     }
 }
