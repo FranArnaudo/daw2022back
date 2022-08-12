@@ -6,6 +6,7 @@ import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo.Nacionalidad;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -39,8 +40,9 @@ public class ControladorJugador {
                                            @RequestParam(name = "nacionalidad", required = false) Integer nacionalidadId,
                                            @RequestParam(name = "facultad", required = false) Integer facultadId,
                                            @RequestParam(name = "page",defaultValue = "0", required = false) int page,
-                                           @RequestParam(name = "size",defaultValue = "4", required = false) int size){
-        Pageable pagina = PageRequest.of(page, size);
+                                           @RequestParam(name = "size",defaultValue = "4", required = false) int size,
+                                           @RequestParam(name = "sort", defaultValue = "id", required = false) String sort){
+        Pageable pagina = PageRequest.of(page,size, Sort.by(sort));
         return this.servicio.getJugadoresQ(filtro,nacionalidadId,facultadId,pagina);
     }
 
