@@ -1,9 +1,7 @@
 package ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo;
 import lombok.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
 @Data

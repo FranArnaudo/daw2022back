@@ -27,11 +27,15 @@ public class Jugador {
     private Date fechaNacimiento;
 
     @ManyToOne()
+    @OrderColumn(name = "nombre")
     private Facultad facultad;
     @ManyToOne()
+    @OrderColumn(name = "nombre")
     private Rol rol;
     @ManyToOne()
+    @OrderColumn(name = "nombre")
     private Disciplina disciplina;
     @ManyToOne()
+    @OrderColumn(name = "nombre")
     private Nacionalidad nacionalidad;
 }

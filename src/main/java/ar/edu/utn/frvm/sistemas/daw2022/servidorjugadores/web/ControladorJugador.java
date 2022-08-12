@@ -41,8 +41,15 @@ public class ControladorJugador {
                                            @RequestParam(name = "facultad", required = false) Integer facultadId,
                                            @RequestParam(name = "page",defaultValue = "0", required = false) int page,
                                            @RequestParam(name = "size",defaultValue = "4", required = false) int size,
-                                           @RequestParam(name = "sort", defaultValue = "id", required = false) String sort){
+                                           @RequestParam(name = "sort", defaultValue = "id", required = false) String sort,
+                                           @RequestParam(name = "order", defaultValue = "DESC", required = false) String order){
+
         Pageable pagina = PageRequest.of(page,size, Sort.by(sort));
+        if (order == "ASC"){
+            pagina = PageRequest.of(page,size, Sort.by(Sort.Direction.ASC, sort));
+        } else if (order == "DESC") {
+            pagina = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, sort));
+        }
         return this.servicio.getJugadoresQ(filtro,nacionalidadId,facultadId,pagina);
     }
 
