@@ -45,9 +45,9 @@ public class ControladorJugador {
                                            @RequestParam(name = "order", defaultValue = "DESC", required = false) String order){
 
         Pageable pagina = PageRequest.of(page,size, Sort.by(sort));
-        if (order == "ASC"){
+        if (order.equals("ASC")){
             pagina = PageRequest.of(page,size, Sort.by(Sort.Direction.ASC, sort));
-        } else if (order == "DESC") {
+        } else if (order.equals("DESC")) {
             pagina = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, sort));
         }
         return this.servicio.getJugadoresQ(filtro,nacionalidadId,facultadId,pagina);

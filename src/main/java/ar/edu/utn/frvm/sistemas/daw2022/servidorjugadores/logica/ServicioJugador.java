@@ -33,9 +33,6 @@ public class ServicioJugador {
         return this.repositorio.findAll();
     }
 
-    public Iterable<Jugador> getJugadores(String filtro){
-        return this.repositorio.findByDniContainingIgnoreCase(filtro);
-    }
 
     public Page<Jugador> getJugadoresQ(String filtro, Integer nacionalidadId, Integer facultadId, Pageable pagina){
         return this.repositorio.findByFilter(nacionalidadId, filtro, facultadId, pagina);

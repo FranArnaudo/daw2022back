@@ -14,9 +14,8 @@ import org.springframework.data.jpa.repository.Query;
 
 @Repository
 public interface RepositorioJugador extends PagingAndSortingRepository<Jugador, Integer> {
-    Iterable<Jugador> findByDniContainingIgnoreCase(String dni);
 
-    @Query("SELECT DISTINCT j FROM Jugador j LEFT OUTER JOIN Nacionalidad n ON j.nacionalidad = n LEFT OUTER JOIN Facultad f ON j.facultad = f WHERE (:nacionalidadId is null OR n.id = :nacionalidadId) AND (:facultadId is null OR f.id = :facultadId) AND (j.nombre LIKE %:filtro% OR j.apellido LIKE %:filtro% OR j.dni LIKE %:filtro% )")
+    @Query("SELECT j FROM Jugador j LEFT OUTER JOIN Nacionalidad n ON j.nacionalidad = n LEFT OUTER JOIN Facultad f ON j.facultad = f WHERE (:nacionalidadId is null OR n.id = :nacionalidadId) AND (:facultadId is null OR f.id = :facultadId) AND (j.nombre LIKE %:filtro% OR j.apellido LIKE %:filtro% OR j.dni LIKE %:filtro% )")
     Page<Jugador> findByFilter(Integer nacionalidadId, String filtro, Integer facultadId, Pageable pagina);
 
 }

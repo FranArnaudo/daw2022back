@@ -3,6 +3,7 @@ package ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
@@ -19,7 +20,7 @@ public class Jugador {
     @NonNull
     private String apellido;
     @NonNull
-    private String dni;
+    private BigInteger dni;
 
     private Integer legajo;
     private String email;
