@@ -1,13 +1,13 @@
 package ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.web;
 import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.logica.ServicioDisciplina;
 import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo.Disciplina;
+import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo.Rol;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/disciplinas")
 @RestController
 public class ControladorDisciplina {
@@ -23,9 +23,6 @@ public class ControladorDisciplina {
         return this.servicio.getDisciplinas();
     }
 
-    @RequestMapping(params = {"page"})
-    public Page<Disciplina> getDisciplinas(Pageable pagina) {return this.servicio.getDisciplinas(pagina);}
-
     @RequestMapping(params = {"filtro"})
     public Iterable<Disciplina> getDisciplinas(@RequestParam(name = "filtro") String filtro){
         log.info(filtro);
@@ -36,6 +33,11 @@ public class ControladorDisciplina {
     @RequestMapping(value = "/{id}")
     public Disciplina getDisciplina(@PathVariable("id") Integer id){
         return this.servicio.getDisciplina(id);
+    }
+
+    @RequestMapping(params = {"page"})
+    public Iterable<Disciplina> getDisciplina(Pageable pagina) {
+        return this.servicio.getDisciplinas(pagina);
     }
 
     //POST
@@ -51,8 +53,8 @@ public class ControladorDisciplina {
     }
 
     // DELETE
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void eliminar(@RequestBody Integer id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void eliminar(@PathVariable("id") Integer id){
         this.servicio.eliminar(id);
     }
 }

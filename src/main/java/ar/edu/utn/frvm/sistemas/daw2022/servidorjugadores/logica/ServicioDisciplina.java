@@ -1,5 +1,6 @@
 package ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.logica;
 import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo.Disciplina;
+import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo.Rol;
 import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.persistencia.RepositorioDisciplina;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,10 @@ public class ServicioDisciplina {
         return this.repositorio.findByNombreContainingIgnoreCase(filtro);
     }
 
+    public Page<Disciplina> getDisciplinas(Pageable pagina){
+        return this.repositorio.findAll(pagina);
+    }
+
     public Disciplina guadar(Disciplina d){
         return this.repositorio.save(d);
     }
@@ -39,6 +44,4 @@ public class ServicioDisciplina {
     public void eliminar(Integer id){
         this.repositorio.deleteById(id);
     }
-
-    public Page<Disciplina> getDisciplinas(Pageable pagina) { return this.repositorio.findAll(pagina);}
 }
