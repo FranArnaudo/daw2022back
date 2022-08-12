@@ -26,11 +26,8 @@ public class ServicioNacionalidad {
         return this.repositorio.findAll();
     }
 
-    public Iterable<Nacionalidad> getNacionalidades(String filtro){
-        return this.repositorio.findByNombreContainingIgnoreCase(filtro);
-    }
-    public Page<Nacionalidad> getNacionalidades(Pageable pagina){
-        return this.repositorio.findAll(pagina);
+    public Page<Nacionalidad> getNacionalidadesQ(String filtro, Pageable pagina){
+        return this.repositorio.findByFilter(filtro, pagina);
     }
     public Nacionalidad guardar(Nacionalidad n) {
         return this.repositorio.save(n);

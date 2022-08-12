@@ -2,12 +2,13 @@ package ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.web;
 
 import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.logica.ServicioNacionalidad;
 import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo.Nacionalidad;
-import ar.edu.utn.frvm.sistemas.daw2022.servidorjugadores.modelo.Rol;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/nacionalidades")
 @RestController
 public class ControladorNacionalidad {
@@ -23,21 +24,18 @@ public class ControladorNacionalidad {
         return this.servicio.getNacionalidades();
     }
 
-    @RequestMapping(params = {"filtro"})
-    public Iterable<Nacionalidad> getNacionalidades(@RequestParam(name = "filtro") String filtro){
-        log.info(filtro);
-        return this.servicio.getNacionalidades(filtro);
+    @RequestMapping(method = RequestMethod.GET, params = {"page"})
+    public Iterable<Nacionalidad> getNacionalidadesQ(@RequestParam(name = "filtro", defaultValue = "") String filtro,
+                                                    @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+                                                    @RequestParam(name = "size", defaultValue = "4", required = false) int size){
+        Pageable pagina = PageRequest.of(page,size);
+        return this.servicio.getNacionalidadesQ(filtro, pagina);
     }
 
     //GET 1
     @RequestMapping(value = "/{id}")
     public Nacionalidad getNacionalidades(@PathVariable("id") Integer id){
         return this.servicio.getNacionalidades(id);
-    }
-
-    @RequestMapping(params = {"page"})
-    public Iterable<Nacionalidad> getNacionalidades(Pageable pagina) {
-        return this.servicio.getNacionalidades(pagina);
     }
 
     //POST

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/disciplinas")
 @RestController
 public class ControladorDisciplina {
